@@ -1,4 +1,28 @@
 import React, { Component } from "react";
+import Svg, {
+  Circle,
+  Ellipse,
+  G,
+  Text,
+  TSpan,
+  TextPath,
+  Path,
+  Polygon,
+  Polyline,
+  Line,
+  Rect,
+  Use,
+  Image,
+  Symbol,
+  Defs,
+  LinearGradient,
+  RadialGradient,
+  Stop,
+  ClipPath,
+  Pattern,
+  Mask,
+} from 'react-native-svg';
+
 import { StyleSheet, TouchableWithoutFeedback, Platform, StatusBar, Animated, Image, Text, View } from "react-native";
 import { isIphoneX, getStatusBarHeight } from "react-native-iphone-x-helper";
 import PropTypes from "prop-types";
@@ -29,7 +53,7 @@ const MessagePropType = PropTypes.shape({
 /**
  * Non-operation func
  */
-const noop = () => {};
+const noop = () => { };
 
 /**
  * Simple random ID for internal FlashMessage component usage
@@ -145,13 +169,17 @@ export const renderFlashMessageIcon = (icon = "success", style = {}, customProps
   switch (icon) {
     case "success":
       return (
-        <Image style={[styles.flashIcon, style]} source={require("./icons/fm_icon_success.png")} {...customProps} />
+        <Svg width="23" height="23" viewBox='0 0 23 23'>
+          <Path d="M11.5 0C17.841 0 23 5.16 23 11.5S17.841 23 11.5 23 0 17.841 0 11.5 5.159 0 11.5 0zm0 1.885c-5.302 0-9.615 4.313-9.615 9.615 0 5.302 4.313 9.615 9.615 9.615 5.302 0 9.615-4.313 9.615-9.615 0-5.302-4.313-9.615-9.615-9.615zm4.975 5.201a.943.943 0 011.412 1.245l-.079.088-7.494 7.495a.94.94 0 01-1.237.084l-.097-.084-3.788-3.788a.943.943 0 011.244-1.412l.09.079 3.121 3.121 6.828-6.828z" fill="#FFF" fill-rule="nonzero" />
+        </Svg>
       );
     case "info":
       return <Image style={[styles.flashIcon, style]} source={require("./icons/fm_icon_info.png")} {...customProps} />;
     case "warning":
       return (
-        <Image style={[styles.flashIcon, style]} source={require("./icons/fm_icon_warning.png")} {...customProps} />
+        <Svg width="23" height="22" xmlns="http://www.w3.org/2000/svg" viewBox='0 0 23 22'>
+          <Path d="M11.492.042c1.405 0 2.665.686 3.417 1.855l.12.2 7.396 12.807a4.032 4.032 0 01-.01 4.08 4.066 4.066 0 01-3.319 2.054l-.232.006H4.091a4.042 4.042 0 01-3.528-2.026 4.059 4.059 0 01-.13-3.887l.116-.217L7.954 2.09a4.033 4.033 0 013.538-2.05zm0 1.851c-.755 0-1.427.358-1.841.973l-.09.146L2.154 15.83a2.235 2.235 0 00.004 2.253 2.196 2.196 0 001.757 1.099l.17.006H18.86c.813 0 1.54-.42 1.95-1.129.376-.65.409-1.408.1-2.063l-.085-.161-7.4-12.818a2.201 2.201 0 00-1.932-1.124zM11.487 14.8c.647 0 1.18.534 1.152 1.21.029.613-.533 1.152-1.152 1.152-.642 0-1.18-.539-1.18-1.18 0-.643.538-1.182 1.18-1.182zm-.293-8.288a1.184 1.184 0 011.365.666c.08.189.109.378.109.59l-.109 1.771c-.052.912-.109 1.823-.16 2.735-.029.297-.029.566-.029.86a.883.883 0 01-.883.859.863.863 0 01-.87-.723l-.013-.108-.241-4.237-.08-1.124c0-.618.35-1.129.911-1.29z" fill="#FFF" fill-rule="nonzero" />
+        </Svg>
       );
     case "danger":
       return (
@@ -205,9 +233,9 @@ export const DefaultFlash = ({
               !!message.backgroundColor
                 ? { backgroundColor: message.backgroundColor }
                 : !!message.type &&
-                  !!FlashMessage.ColorTheme[message.type] && {
-                    backgroundColor: FlashMessage.ColorTheme[message.type],
-                  },
+                !!FlashMessage.ColorTheme[message.type] && {
+                  backgroundColor: FlashMessage.ColorTheme[message.type],
+                },
               style,
             ],
             wrapperInset,
@@ -345,7 +373,7 @@ export default class FlashMessage extends Component {
     floating: PropTypes.bool,
     position: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
     renderCustomContent: PropTypes.func,
-    icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.element]),
     renderFlashMessageIcon: PropTypes.func,
     transitionConfig: PropTypes.func,
     MessageComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
@@ -356,9 +384,9 @@ export default class FlashMessage extends Component {
    */
   static ColorTheme = {
     success: "#5cb85c",
-    info: "#5bc0de",
+    info: "#166478",
     warning: "#f0ad4e",
-    danger: "#d9534f",
+    danger: "#D4504A",
   };
   static setColorTheme = theme => {
     FlashMessage.ColorTheme = Object.assign(FlashMessage.ColorTheme, theme);
@@ -626,6 +654,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     backgroundColor: "#696969",
     minHeight: OFFSET_HEIGHT,
+    alignItems: "center"
   },
   defaultFlashCenter: {
     margin: 44,
