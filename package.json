@@ -1,13 +1,13 @@
 {
   "name": "react-native-flash-message",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "React Native flashbar and top notification alert utility",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
     "upd": "yarn upgrade-interactive --latest"
   },
-  "repository": "https://github.com/lucasferreira/react-native-flash-message.git",
+  "repository": "https://github.com/verypossible/react-native-flash-message.git",
   "keywords": [
     "react",
     "react-native",
