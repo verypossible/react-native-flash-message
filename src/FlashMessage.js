@@ -673,7 +673,8 @@ const styles = StyleSheet.create({
   },
   flashIconLeft: {
     marginLeft: -6,
-    marginRight: 9,
+    marginRight: 12,
+    marginTop: -3
   },
   flashIconRight: {
     marginRight: -6,
